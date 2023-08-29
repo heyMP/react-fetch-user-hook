@@ -40,8 +40,9 @@ export function useFetchUsers<TUser>(url: string, path: string) {
     fetch(url)
       .then(res => res.json())
       .then((res) => {
-        if (deepValue(res, path).length !== undefined) {
-          setUserList([...userList, ...res.results])
+        const value = deepValue(res, path);
+        if (value.length !== undefined) {
+          setUserList([...userList, ...value])
           setUserIndex((userIndex !== undefined ? userIndex + 1 : 0))
         }
       })
