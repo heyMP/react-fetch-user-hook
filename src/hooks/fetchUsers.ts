@@ -11,7 +11,7 @@ function deepValue(obj: any, path: string) {
  * @param string url
  * @param path string Perod separated value that references a path of the result value.
  */
-export function useFetchUsers<TUser>(url: string, path: string): [typeof currentUser, typeof next, typeof previous, typeof loading] {
+export function useFetchUsers<TUser>(url: string, path: string) {
   const [loading, setLoading] = useState<boolean>(false);
   const [mounted, setMounted] = useState<boolean>(false);
   const [userList, setUserList] = useState<TUser[]>([]);
@@ -85,5 +85,5 @@ export function useFetchUsers<TUser>(url: string, path: string): [typeof current
     }
   }, [userIndex]);
 
-  return [currentUser, next, previous, loading];
+  return [currentUser, next, previous, loading] as const;
 };
